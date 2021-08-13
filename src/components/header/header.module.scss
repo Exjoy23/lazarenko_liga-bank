@@ -17,7 +17,7 @@
 
   @media screen and (max-width: 1023px) {
     padding-top: 23px;
-    padding-bottom: 23px;
+    padding-bottom: 18px;
   }
 
   @media screen and (max-width: 767px) {
@@ -156,6 +156,16 @@
   }
 }
 
+.link {
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
 .login {
   position: relative;
   display: block;
@@ -166,6 +176,10 @@
     font-size: 0;
     min-width: 20px;
     padding: 0;
+
+    &:focus {
+      transform: scale(2);
+    }
   }
 
   &::before {

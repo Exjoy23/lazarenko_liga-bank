@@ -15,6 +15,7 @@ function Header() {
               className={styles.button}
               type="button"
               onClick={() => setIsMenuActive((state) => !state)}
+              aria-label="меню"
             />
           </div>
           <div className={styles.logo}>
@@ -31,22 +32,31 @@ function Header() {
             )}
           >
             <li className={styles.item}>
-              <a href="/">Услуги</a>
+              <a className={styles.link} href="/">
+                Услуги
+              </a>
             </li>
             <li className={styles.item}>
-              <a href="/">Рассчитать кредит</a>
+              <a className={styles.link} href="/">
+                Рассчитать кредит
+              </a>
             </li>
             <li className={styles.item}>
-              <a href="/">Конвертер валют</a>
+              <a className={styles.link} href="/">
+                Конвертер валют
+              </a>
             </li>
             <li className={styles.item}>
-              <a href="/">Контакты</a>
+              <a className={styles.link} href="/">
+                Контакты
+              </a>
             </li>
           </ul>
           <a
             className={classNames(
               styles.login,
               isMenuActive && styles.login_active,
+              styles.link,
             )}
             href="/"
           >
