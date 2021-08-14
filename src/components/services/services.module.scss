@@ -1,0 +1,256 @@
+.wrapper {
+  padding-top: 61px;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 1023px) {
+    padding-top: 0;
+  }
+}
+
+.inner {
+  width: 100%;
+  max-width: 1170px;
+}
+
+.slides {
+  height: 410px;
+
+  @media screen and (max-width: 1023px) {
+    height: 380px;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 362px;
+  }
+}
+
+.slide {
+  background-color: #f6f7ff;
+  padding-top: 60px;
+  padding-left: 70px;
+  background-repeat: no-repeat;
+  padding-right: 50%;
+  background-position: 596px 60px;
+
+  @media screen and (max-width: 1023px) {
+    padding-left: 45px;
+    padding-right: 45%;
+    background-position: 91% 60px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-left: 15px;
+    padding-right: 0;
+    background-position: 100% 99px;
+  }
+
+  &_vault {
+    background-image: url('../../assets/img/piggybank.jpg');
+
+    @media screen and (max-width: 1023px) {
+      background-image: url('../../assets/img/piggybank-tablet.jpg');
+    }
+
+    @media screen and (max-width: 767px) {
+      background-image: url('../../assets/img/piggybank-phone.jpg');
+    }
+  }
+
+  &_cards {
+    background-image: url('../../assets/img/car.jpg');
+
+    @media screen and (max-width: 1023px) {
+      background-image: url('../../assets/img/car-tablet.jpg');
+    }
+
+    @media screen and (max-width: 767px) {
+      background-image: url('../../assets/img/car-phone.jpg');
+    }
+  }
+
+  &_security {
+    background-image: url('../../assets/img/lock.jpg');
+
+    @media screen and (max-width: 1023px) {
+      background-image: url('../../assets/img/lock-tablet.jpg');
+    }
+
+    @media screen and (max-width: 767px) {
+      background-image: url('../../assets/img/lock-phone.jpg');
+    }
+  }
+
+  &_phone {
+    background-image: url('../../assets/img/phone.jpg');
+
+    @media screen and (max-width: 1023px) {
+      background-image: url('../../assets/img/phone-tablet.jpg');
+    }
+
+    @media screen and (max-width: 767px) {
+      background-image: url('../../assets/img/phone-phone.jpg');
+    }
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 33px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding-right: 70px;
+  }
+}
+
+.item {
+  position: relative;
+  padding-left: 21px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-left: 15px;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 13px;
+    height: 12px;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/img/arrow.svg');
+
+    @media screen and (max-width: 767px) {
+      width: 9px;
+      height: 11px;
+      background-size: contain;
+    }
+  }
+}
+
+.text {
+  font-size: 18px;
+}
+
+.link {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+:global(.slides .swiper-pagination) {
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+}
+
+:global(.slides .swiper-pagination-bullet-active) {
+  background-color: #e0e0e0;
+}
+
+:global(.thumb) {
+  @media screen and (max-width: 1023px) {
+    display: none;
+  }
+}
+
+:global(.thumb .swiper-slide) {
+  padding-top: 37px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  border-radius: 4px 4px 0px 0px;
+  transition: 0.2s linear;
+  color: #4c4b51;
+  font-size: 18px;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f6f7ff;
+    color: #1f1e25;
+  }
+}
+
+:global(.thumb .swiper-slide-thumb-active) {
+  background-color: #f6f7ff;
+  color: #1f1e25;
+
+  &:hover {
+    cursor: default;
+  }
+}
+
+.control {
+  padding-left: 40px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-repeat: no-repeat;
+  }
+
+  &_vault::before {
+    width: 34px;
+    height: 33px;
+    background-image: url('../../assets/img/vault.svg');
+  }
+
+  &_cards::before {
+    width: 34px;
+    height: 30px;
+    background-image: url('../../assets/img/cards.svg');
+  }
+
+  &_security::before {
+    width: 28px;
+    height: 34px;
+    background-image: url('../../assets/img/security.svg');
+  }
+
+  &_phone::before {
+    width: 20px;
+    height: 34px;
+    background-image: url('../../assets/img/phone.svg');
+  }
+}

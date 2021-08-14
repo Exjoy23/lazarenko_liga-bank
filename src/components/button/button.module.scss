@@ -9,6 +9,11 @@
   font-size: 18px;
   font-weight: 500;
 
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
   &_secondary {
     background-color: #f6f7ff;
     color: #1f1e25;
@@ -21,5 +26,9 @@
   @media screen and (max-width: 767px) {
     font-size: 14px;
     padding: 16px 37px;
+
+    &_mobile {
+      padding: 16px 82px;
+    }
   }
 }

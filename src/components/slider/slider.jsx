@@ -18,7 +18,7 @@ function Slider() {
         <Swiper
           slidesPerView={1}
           pagination
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          // autoplay={{ delay: 4000, disableOnInteraction: false }}
           loop
           a11y
           keyboard={{ enabled: true }}
