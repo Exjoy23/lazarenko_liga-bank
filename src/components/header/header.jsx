@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import styles from './header.module.scss';
 import logo from '../../assets/img/logo.svg';
+import { Login } from '../login/login';
 
 function Header() {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const [isModalActive, setIsModalActive] = useState(false);
+
+  useEffect(() => {
+    if (isModalActive) {
+      document.body.style = 'overflow: hidden;';
+    }
+
+    if (!isModalActive) {
+      document.body.style = 'overflow: visible;';
+    }
+  }, [isModalActive]);
 
   return (
     <header className={styles.header}>
@@ -59,6 +71,10 @@ function Header() {
               styles.link,
             )}
             href="/"
+            onClick={(evt) => {
+              evt.preventDefault();
+              setIsModalActive(true);
+            }}
           >
             Войти в Интернет-банк
           </a>
@@ -71,6 +87,7 @@ function Header() {
           )}
         </nav>
       </div>
+      <Login isOpen={isModalActive} onActive={setIsModalActive} />
     </header>
   );
 }
