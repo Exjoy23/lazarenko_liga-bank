@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  height: 462px;
+  width: 100%;
+  max-width: 1260px;
+  padding-left: 45px;
+  padding-right: 45px;
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+    height: 381px;
+  }
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 60px;
+  padding-top: 110px;
+  font-weight: 700;
+  font-size: 41px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 22px;
+    padding-left: 15px;
+    margin-bottom: 30px;
+  }
+}
+
+.map {
+  height: 100%;
+}

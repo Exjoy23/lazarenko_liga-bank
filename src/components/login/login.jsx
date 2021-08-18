@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import styles from './login.module.scss';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useLocalStorage from '../../hooks/use-local-storage';
 import { Button } from '../button/button';
 import logo from '../../assets/img/logo-modal.svg';
 
