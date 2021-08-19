@@ -72,6 +72,9 @@ function Login({ isOpen, onActive }) {
             className={styles.visible}
             onMouseDown={() => setIsVisible(true)}
             onMouseUp={() => setIsVisible(false)}
+            onMouseLeave={() => setIsVisible(false)}
+            onTouchStart={() => setIsVisible(true)}
+            onTouchEnd={() => setIsVisible(false)}
             type="button"
           />
         </label>

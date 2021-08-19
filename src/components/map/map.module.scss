@@ -1,6 +1,15 @@
 .wrapper {
   display: flex;
   justify-content: center;
+  height: 791px;
+
+  @media screen and (max-width: 1023px) {
+    height: 727px;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 604px;
+  }
 }
 
 .inner {
