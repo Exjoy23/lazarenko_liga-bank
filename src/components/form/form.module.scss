@@ -1,0 +1,163 @@
+.form {
+  display: grid;
+  grid-template-columns: 51.2% 42.8%;
+  column-gap: 6%;
+
+  @media screen and (max-width: 1023px) {
+    display: flex;
+    flex-direction: column;
+    column-gap: 0;
+  }
+}
+
+.wrapper {
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 41px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 30px;
+  }
+}
+
+.purpose {
+  margin-bottom: 27px;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 17px;
+  }
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+  margin-bottom: 24px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  height: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1px solid #1f1e25;
+  border-radius: 4px;
+  margin-bottom: 11px;
+  text-align: center;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+
+.price {
+  position: relative;
+}
+
+.select {
+  font-size: 16px;
+  padding-left: 20px;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 10px;
+  }
+}
+
+.caption {
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 14px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 14px;
+  }
+}
+
+.slider {
+  padding-top: 6px;
+  padding-left: 7px;
+  padding-right: 10px;
+  margin-bottom: 45px;
+
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 40px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 35px;
+  }
+}
+
+:global(.rc-slider-dot) {
+  display: none;
+}
+
+:global(.rc-slider-mark-text) {
+  font-size: 14px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+}
+
+.flag {
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.button {
+  position: absolute;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  top: 49px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  &:active {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  &_minus {
+    background-image: url('../../assets/img/minus.svg');
+    left: 23px;
+  }
+
+  &_plus {
+    background-image: url('../../assets/img/plus.svg');
+    right: 23px;
+  }
+}
