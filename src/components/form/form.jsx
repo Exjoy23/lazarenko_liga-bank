@@ -1,35 +1,29 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import Slider from 'rc-slider';
 import styles from './form.module.scss';
 import { Proposal } from '../proposal/proposal';
+import { Select } from '../select/select';
+import { Checkbox } from '../checkbox/checkbox';
+import { Range } from '../range/range';
+
+const DEFAULT_PURPOSE = 'default';
 
 function Form() {
-  const [purpose, setPurpose] = useState(0);
+  const [purpose, setPurpose] = useState(DEFAULT_PURPOSE);
   const [price, setPrice] = useState('1200000');
-  const [paymentSlider, setPaymentSlider] = useState(10);
-  const [timeSlider, setTimeSlider] = useState(5);
+  const [paymentRange, setPaymentRange] = useState(10);
+  const [timeRange, setTimeRange] = useState(5);
 
   return (
     <form className={styles.form}>
       <div className={styles.wrapper}>
         <div className={classNames(styles.inner, styles.purpose)}>
           <h3 className={styles.title}>Шаг 1. Цель кредита</h3>
-          <label className={styles.inner}>
-            <select
-              className={classNames(styles.input, styles.select)}
-              value={purpose}
-              onChange={(evt) => setPurpose(evt.target.value)}
-            >
-              <option style={{ display: 'none' }} value="0" disabled>
-                Выберите цель кредита
-              </option>
-              <option value="mortgage">Ипотечное кредитование</option>
-              <option value="car">Автомобильное кредитование</option>
-            </select>
-          </label>
+          <div className={styles.select}>
+            <Select activeType={purpose} onActiveType={setPurpose} />
+          </div>
         </div>
-        {!!purpose && (
+        {purpose !== DEFAULT_PURPOSE && (
           <div className={styles.inner}>
             <h3 className={styles.title}>Шаг 2. Введите параметры кредита</h3>
             <label className={classNames(styles.label, styles.price)}>
@@ -56,29 +50,10 @@ function Form() {
               <span className={styles.caption}>Первоначальный взнос</span>
               <input className={styles.input} type="text" />
               <div className={styles.slider}>
-                <Slider
-                  value={paymentSlider}
-                  onChange={setPaymentSlider}
-                  marks={{ [paymentSlider]: `${paymentSlider}%` }}
-                  min={10}
-                  max={100}
-                  step={5}
-                  railStyle={{
-                    backgroundColor: '#C1C2CA',
-                    height: 1,
-                    marginTop: 1.5,
-                  }}
-                  trackStyle={{
-                    background: '#000000',
-                    height: 1,
-                    marginTop: 1.5,
-                  }}
-                  handleStyle={{
-                    height: 14,
-                    width: 14,
-                    backgroundColor: '#2C36F2',
-                    border: 0,
-                  }}
+                <Range
+                  onChange={setPaymentRange}
+                  value={paymentRange}
+                  markFrom="10%"
                 />
               </div>
             </label>
@@ -86,43 +61,22 @@ function Form() {
               <span className={styles.caption}>Срок кредитования</span>
               <input className={styles.input} type="text" />
               <div className={styles.slider}>
-                <Slider
-                  value={timeSlider}
-                  onChange={setTimeSlider}
-                  marks={{ 5: '5 лет', 30: '30\u00A0лет' }}
+                <Range
+                  onChange={setTimeRange}
+                  value={timeRange}
                   min={5}
                   max={30}
                   step={1}
-                  railStyle={{
-                    backgroundColor: '#C1C2CA',
-                    height: 1,
-                    marginTop: 1.5,
-                  }}
-                  trackStyle={{
-                    background: '#000000',
-                    height: 1,
-                    marginTop: 1.5,
-                  }}
-                  handleStyle={{
-                    height: 14,
-                    width: 14,
-                    backgroundColor: '#2C36F2',
-                    border: 0,
-                  }}
+                  markFrom="5 лет"
+                  markTo="30 лет"
                 />
               </div>
             </label>
-            <label>
-              <input className={styles.checkbox} type="checkbox" />
-              <span className={styles.flag}>
-                {' '}
-                Использовать материнский капитал
-              </span>
-            </label>
+            <Checkbox>Использовать материнский капитал</Checkbox>
           </div>
         )}
       </div>
-      {!!purpose && <Proposal />}
+      {purpose !== DEFAULT_PURPOSE && <Proposal />}
     </form>
   );
 }

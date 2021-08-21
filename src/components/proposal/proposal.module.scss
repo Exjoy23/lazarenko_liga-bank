@@ -1,9 +1,9 @@
 .wrapper {
   background-color: #f6f7ff;
   padding-top: 60px;
-  padding-left: 12%;
-  padding-right: 12%;
-  height: 389px;
+  padding-left: 59px;
+  padding-right: 59px;
+  height: 393px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -25,7 +25,7 @@
 .inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 12.7%;
+  column-gap: 49px;
   row-gap: 30px;
   margin-bottom: 33px;
 

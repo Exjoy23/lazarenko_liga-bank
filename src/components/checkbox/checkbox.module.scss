@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.text {
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
+}

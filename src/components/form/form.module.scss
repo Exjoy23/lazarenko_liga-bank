@@ -1,6 +1,6 @@
 .form {
   display: grid;
-  grid-template-columns: 51.2% 42.8%;
+  grid-template-columns: 1fr 500px;
   column-gap: 6%;
 
   @media screen and (max-width: 1023px) {
@@ -32,17 +32,21 @@
   font-size: 22px;
   font-weight: 500;
   margin: 0;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 
   @media screen and (max-width: 1023px) {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
   }
 
   @media screen and (max-width: 767px) {
     font-size: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
+}
+
+.select {
+  margin-bottom: 9px;
 }
 
 .inner {
@@ -61,12 +65,12 @@
   font-weight: 500;
   border: 1px solid #1f1e25;
   border-radius: 4px;
-  margin-bottom: 11px;
+  margin-bottom: 8px;
   text-align: center;
 
   @media screen and (max-width: 1023px) {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
 }
 
@@ -74,40 +78,33 @@
   position: relative;
 }
 
-.select {
-  font-size: 16px;
-  padding-left: 20px;
-
-  @media screen and (max-width: 767px) {
-    padding-left: 10px;
-  }
-}
-
 .caption {
-  margin-bottom: 8px;
+  margin-top: -5px;
+  margin-bottom: 12px;
 }
 
 .text {
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 24px;
+  }
 
   @media screen and (max-width: 767px) {
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 }
 
 .slider {
-  padding-top: 6px;
-  padding-left: 7px;
-  padding-right: 10px;
-  margin-bottom: 45px;
+  margin-bottom: 30px;
 
   @media screen and (max-width: 1023px) {
-    margin-bottom: 40px;
+    margin-bottom: 26px;
   }
 
   @media screen and (max-width: 767px) {
-    margin-bottom: 35px;
+    margin-bottom: 22px;
   }
 }
 
@@ -119,25 +116,14 @@
   font-size: 14px;
 }
 
-.checkbox {
-  width: 16px;
-  height: 16px;
-}
-
-.flag {
-  @media screen and (max-width: 767px) {
-    font-size: 14px;
-  }
-}
-
 .button {
   position: absolute;
   padding: 0;
-  width: 16px;
-  height: 16px;
+  width: 30px;
+  height: 30px;
   border: none;
   background-color: transparent;
-  top: 49px;
+  top: 42px;
   background-repeat: no-repeat;
   background-position: center;
 
@@ -153,11 +139,11 @@
 
   &_minus {
     background-image: url('../../assets/img/minus.svg');
-    left: 23px;
+    left: 17px;
   }
 
   &_plus {
     background-image: url('../../assets/img/plus.svg');
-    right: 23px;
+    right: 17px;
   }
 }
