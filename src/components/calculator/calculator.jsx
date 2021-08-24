@@ -1,5 +1,4 @@
 import React from 'react';
-import 'rc-slider/assets/index.css';
 import styles from './calculator.module.scss';
 import { Form } from '../form/form';
 

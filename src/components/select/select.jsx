@@ -4,9 +4,9 @@ import styles from './select.module.scss';
 import classNames from 'classnames';
 
 const CreditType = {
-  default: 'Выберите цель кредита',
-  mortgage: 'Ипотечное кредитование',
-  car: 'Автомобильное кредитование',
+  DEFAULT: 'Выберите цель кредита',
+  MORTGAGE: 'Ипотечное кредитование',
+  CAR: 'Автомобильное кредитование',
 };
 
 function Select({ activeType, onActiveType }) {
@@ -35,11 +35,11 @@ function Select({ activeType, onActiveType }) {
               id="mortgage"
               type="radio"
               name="credit"
-              value="mortgage"
-              disabled={CreditType[activeType] === CreditType.mortgage}
+              value="MORTGAGE"
+              disabled={CreditType[activeType] === CreditType.MORTGAGE}
             />
             <label className={styles.label} htmlFor="mortgage">
-              {CreditType.mortgage}
+              {CreditType.MORTGAGE}
             </label>
           </li>
           <li className={styles.item}>
@@ -48,11 +48,11 @@ function Select({ activeType, onActiveType }) {
               id="car"
               type="radio"
               name="credit"
-              value="car"
-              disabled={CreditType[activeType] === CreditType.car}
+              value="CAR"
+              disabled={CreditType[activeType] === CreditType.CAR}
             />
             <label className={styles.label} htmlFor="car">
-              {CreditType.car}
+              {CreditType.CAR}
             </label>
           </li>
         </ul>

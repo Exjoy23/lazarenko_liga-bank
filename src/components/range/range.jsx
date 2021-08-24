@@ -11,10 +11,6 @@ function Range({
   markFrom = '',
   markTo = '',
 }) {
-  const onInputChange = (evt) => {
-    onChange(evt.target.value);
-  };
-
   return (
     <div className={styles.wrapper}>
       <input
@@ -24,7 +20,7 @@ function Range({
         min={min}
         max={max}
         step={step}
-        onChange={onInputChange}
+        onChange={onChange}
       />
       <div className={styles.inner}>
         <span>{markFrom}</span>

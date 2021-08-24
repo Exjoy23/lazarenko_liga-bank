@@ -11,7 +11,7 @@ function MainPage() {
   return (
     <div className={styles.wrapper}>
       <Header />
-      <main className={styles.main}>
+      <main>
         <Slider />
         <Services />
         <Calculator />
