@@ -1,14 +1,14 @@
 .wrapper {
   display: flex;
   justify-content: center;
-  height: 791px;
+  height: 746px;
 
   @media screen and (max-width: 1023px) {
-    height: 727px;
+    height: 685px;
   }
 
   @media screen and (max-width: 767px) {
-    height: 604px;
+    height: 560px;
   }
 }
 

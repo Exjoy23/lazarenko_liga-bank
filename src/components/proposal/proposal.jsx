@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import styles from './proposal.module.scss';
 import { Button } from '../button/button';
 
-function Proposal({ sum, percent, payment, profit }) {
+const SumName = {
+  MORTGAGE: 'ипотеки',
+  CAR: 'автокредита',
+};
+
+function Proposal({ purpose, sum, percent, payment, profit }) {
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title}>Наше предложение</h2>
       <div className={styles.inner}>
         <div>
           <div className={styles.subtitle}>{sum} рублей</div>
-          <div>Сумма ипотеки</div>
+          <div>Сумма {SumName[purpose]}</div>
         </div>
         <div>
           <div className={styles.subtitle}>{percent}%</div>
@@ -31,6 +36,7 @@ function Proposal({ sum, percent, payment, profit }) {
 }
 
 Proposal.propTypes = {
+  purpose: PropTypes.string.isRequired,
   sum: PropTypes.number.isRequired,
   percent: PropTypes.number.isRequired,
   payment: PropTypes.number.isRequired,

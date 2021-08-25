@@ -5,16 +5,25 @@ import { Proposal } from '../proposal/proposal';
 import { Select } from '../select/select';
 import { Checkbox } from '../checkbox/checkbox';
 import { Range } from '../range/range';
+import {
+  TIME_TITLES,
+  PurposeNames,
+  declOfNum,
+  getNumber,
+  getMoneyString,
+  divideNumberByPieces,
+  getTime
+} from '../../utils';
 
-const DEFAULT_PURPOSE = 'DEFAULT';
 const DEFAULT_VALUE = '';
 const DEFAULT_RANGE_VALUE = 0;
 const MAX_PERCENT = 100;
-const TIME_TITLES = ['год', 'года', 'лет'];
-const CURRENCY_TITLES = ['рубль', 'рубля', 'рублей'];
-
+const MONTHS_IN_YEAR = 12;
+const MATERNITY_CAPITAL = 470000;
+const CAR_PRICE = 2000000;
 const LoanPurpose = {
   MORTGAGE: {
+    NAME: 'недвижимости',
     MIN_PRICE: 1200000,
     MAX_PRICE: 25000000,
     STEP_PRICE: 100000,
@@ -23,54 +32,31 @@ const LoanPurpose = {
     STEP_TIME: 1,
     MIN_PERCENT: 10,
   },
+  CAR: {
+    NAME: 'автомобиля',
+    MIN_PRICE: 500000,
+    MAX_PRICE: 5000000,
+    STEP_PRICE: 50000,
+    MIN_TIME: 1,
+    MAX_TIME: 5,
+    STEP_TIME: 1,
+    MIN_PERCENT: 20,
+  },
 };
-
-const declOfNum = (number, titles) => {
-  const cases = [2, 0, 1, 1, 1, 2];
-  return titles[
-    number % 100 > 4 && number % 100 < 20
-      ? 2
-      : cases[number % 10 < 5 ? number % 10 : 5]
-  ];
-};
-
-const getNumber = (value) => +value.replace(/[^\d]/g, '');
-
-const divideNumberByPieces = (number) =>
-  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-
-const glueString = (string) => string.split(' ').join('');
-const getMoneyString = (value) =>
-  `${divideNumberByPieces(value)} ${declOfNum(value, CURRENCY_TITLES)}`;
-const getMoneyNumber = (value) => getNumber(glueString(value));
 
 function Form() {
-  const [purpose, setPurpose] = useState(DEFAULT_PURPOSE);
+  const [purpose, setPurpose] = useState(PurposeNames.DEFAULT);
   const [price, setPrice] = useState(DEFAULT_VALUE);
   const [payment, setPayment] = useState(DEFAULT_VALUE);
   const [paymentRange, setPaymentRange] = useState(DEFAULT_RANGE_VALUE);
   const [time, setTime] = useState(DEFAULT_VALUE);
   const [timeRange, setTimeRange] = useState(DEFAULT_RANGE_VALUE);
-
-  const getProposalPercent = () => {
-    if (purpose === 'MORTGAGE') {
-      if (paymentRange >= 15) {
-        return 8.5;
-      }
-
-      return 9.4;
-    }
-  };
-
-  const proposal = {
-    sum: price - payment,
-    percent: getProposalPercent(),
-    payment: 27000,
-    profit: 30000,
-  };
+  const [capital, setCapital] = useState(false);
+  const [casco, setCasco] = useState(false);
+  const [insurance, setInsurance] = useState(false);
 
   useEffect(() => {
-    if (purpose !== DEFAULT_PURPOSE) {
+    if (purpose !== PurposeNames.DEFAULT) {
       setPrice(getMoneyString(LoanPurpose[purpose].MIN_PRICE));
       setPaymentRange(LoanPurpose[purpose].MIN_PERCENT);
       setPayment(
@@ -89,8 +75,58 @@ function Form() {
     }
   }, [purpose]);
 
+  const getProposalPercent = () => {
+    if (purpose === PurposeNames.MORTGAGE) {
+      if (paymentRange >= 15) {
+        return 8.5;
+      }
+
+      return 9.4;
+    }
+
+    if (purpose === PurposeNames.CAR) {
+      if (casco && insurance) {
+        return 3.5;
+      }
+
+      if (casco || insurance) {
+        return 8.5;
+      }
+
+      if (getNumber(price) < CAR_PRICE) {
+        return 16;
+      }
+
+      if (getNumber(price) >= CAR_PRICE) {
+        return 15;
+      }
+    }
+  };
+
+  const getProposalSum = () =>
+    getNumber(price) - getNumber(payment) - (capital ? MATERNITY_CAPITAL : 0);
+
+  const getProposalPayment = () => {
+    const rate = getProposalPercent() / MAX_PERCENT / MONTHS_IN_YEAR;
+    return Math.round(
+      getProposalSum() *
+        (rate + rate / ((1 + rate) ** (timeRange * MONTHS_IN_YEAR) - 1)),
+    );
+  };
+
+  const getProposalProfit = () =>
+    Math.round((getProposalPayment() / 45) * MAX_PERCENT);
+
+  const proposal = {
+    purpose,
+    sum: getProposalSum(),
+    percent: getProposalPercent(),
+    payment: getProposalPayment(),
+    profit: getProposalProfit(),
+  };
+
   const onPriceChange = (evt) => {
-    const value = getMoneyNumber(evt.target.value);
+    const value = getNumber(evt.target.value);
     setPrice(value);
     setPayment(
       getMoneyString(Math.round((value / MAX_PERCENT) * +paymentRange)),
@@ -98,7 +134,7 @@ function Form() {
   };
 
   const onPriceBlur = (evt) => {
-    const value = getMoneyNumber(evt.target.value);
+    const value = getNumber(evt.target.value);
 
     if (value < LoanPurpose[purpose].MIN_PRICE) {
       setPrice(getMoneyString(LoanPurpose[purpose].MIN_PRICE));
@@ -131,7 +167,7 @@ function Form() {
   };
 
   const onPriceFocus = (evt) => {
-    setPrice(getMoneyNumber(evt.target.value));
+    setPrice(getNumber(evt.target.value));
   };
 
   const onPriceButtonClick = (_, subtraction) => {
@@ -144,25 +180,23 @@ function Form() {
     setPrice((state) => {
       setPayment(
         getMoneyString(
-          Math.round(
-            ((getMoneyNumber(state) + step) / MAX_PERCENT) * +paymentRange,
-          ),
+          Math.round(((getNumber(state) + step) / MAX_PERCENT) * +paymentRange),
         ),
       );
 
-      return getMoneyString(getMoneyNumber(state) + step);
+      return getMoneyString(getNumber(state) + step);
     });
   };
 
   const onPaymentChange = (evt) => {
-    const value = getMoneyNumber(evt.target.value);
+    const value = getNumber(evt.target.value);
     setPayment(value);
-    setPaymentRange((value / getMoneyNumber(price)) * MAX_PERCENT);
+    setPaymentRange((value / getNumber(price)) * MAX_PERCENT);
   };
 
   const onPaymentBlur = (evt) => {
-    const value = getMoneyNumber(evt.target.value);
-    const numberPrice = getMoneyNumber(price);
+    const value = getNumber(evt.target.value);
+    const numberPrice = getNumber(price);
 
     if (
       (value / numberPrice) * MAX_PERCENT <
@@ -185,14 +219,14 @@ function Form() {
   };
 
   const onPaymentFocus = (evt) => {
-    setPayment(getMoneyNumber(evt.target.value));
+    setPayment(getNumber(evt.target.value));
   };
 
   const onPaymentRangeChange = (evt) => {
     const value = +evt.target.value;
     setPaymentRange(value);
     setPayment(
-      getMoneyString(Math.round((getMoneyNumber(price) / MAX_PERCENT) * value)),
+      getMoneyString(Math.round((getNumber(price) / MAX_PERCENT) * value)),
     );
   };
 
@@ -233,7 +267,7 @@ function Form() {
   const onTimeRangeChange = (evt) => {
     const value = +evt.target.value;
     setTimeRange(value);
-    setTime(`${value} ${declOfNum(value, TIME_TITLES)}`);
+    setTime(getTime(value));
   };
 
   return (
@@ -245,11 +279,13 @@ function Form() {
             <Select activeType={purpose} onActiveType={setPurpose} />
           </div>
         </div>
-        {purpose !== DEFAULT_PURPOSE && (
+        {purpose !== PurposeNames.DEFAULT && (
           <div className={styles.inner}>
             <h3 className={styles.title}>Шаг 2. Введите параметры кредита</h3>
             <label className={classNames(styles.label, styles.price)}>
-              <span className={styles.caption}>Стоимость недвижимости</span>
+              <span className={styles.caption}>
+                Стоимость {LoanPurpose[purpose].NAME}
+              </span>
               <input
                 className={styles.input}
                 value={price}
@@ -287,6 +323,7 @@ function Form() {
                 <Range
                   onChange={onPaymentRangeChange}
                   value={paymentRange}
+                  min={LoanPurpose[purpose].MIN_PERCENT}
                   markFrom={`${LoanPurpose[purpose].MIN_PERCENT}%`}
                 />
               </div>
@@ -309,15 +346,29 @@ function Form() {
                 min={LoanPurpose[purpose].MIN_TIME}
                 max={LoanPurpose[purpose].MAX_TIME}
                 step={LoanPurpose[purpose].STEP_TIME}
-                markFrom={`${LoanPurpose[purpose].MIN_TIME} лет`}
-                markTo={`${LoanPurpose[purpose].MAX_TIME} лет`}
+                markFrom={getTime(LoanPurpose[purpose].MIN_TIME)}
+                markTo={getTime(LoanPurpose[purpose].MAX_TIME)}
               />
             </div>
-            {/* <Checkbox>Использовать материнский капитал</Checkbox> */}
+            {purpose === PurposeNames.MORTGAGE && (
+              <Checkbox value={capital} onChange={setCapital}>
+                Использовать материнский капитал
+              </Checkbox>
+            )}
+            {purpose === PurposeNames.CAR && (
+              <>
+                <Checkbox value={casco} onChange={setCasco}>
+                  Оформить КАСКО в нашем банке
+                </Checkbox>
+                <Checkbox value={insurance} onChange={setInsurance}>
+                  Оформить Страхование жизни в нашем банке
+                </Checkbox>
+              </>
+            )}
           </div>
         )}
       </div>
-      {purpose !== DEFAULT_PURPOSE && <Proposal {...proposal} />}
+      {purpose !== PurposeNames.DEFAULT && <Proposal {...proposal} />}
     </form>
   );
 }
