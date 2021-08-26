@@ -1,0 +1,145 @@
+.wrapper {
+  padding-top: 63px;
+  padding-bottom: 35px;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 1023px) {
+    padding: 0;
+  }
+}
+
+.inner {
+  width: 770px;
+  background-color: #f6f7ff;
+  padding: 70px;
+
+  @media screen and (max-width: 1023px) {
+    padding: 0;
+    background-color: #ffffff;
+    padding-top: 52px;
+    padding-bottom: 6px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 45px;
+  }
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 18px;
+    margin-bottom: 29px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+}
+
+.list {
+  color: #394959;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.term {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #c4c4c4;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+.definition {
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 14px;
+  text-align: right;
+  border-bottom: 1px solid #c4c4c4;
+  font-weight: 500;
+  font-size: 22px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    text-align: left;
+    margin-top: -75px;
+    margin-bottom: 51px;
+    padding-bottom: 16px;
+    border: none;
+  }
+}
+
+.form {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content min-content min-content;
+  column-gap: 30px;
+  row-gap: 30px;
+  align-items: center;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 1px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    column-gap: 0;
+    row-gap: 20px;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 60px;
+  border: 1px solid #0a1e32;
+  border-radius: 4px;
+  color: #707c87;
+  font-size: 18px;
+  padding: 24px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+    padding-left: 15px;
+  }
+}
+
+.name {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.label {
+  @media screen and (max-width: 767px) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
+
+.button {
+  padding-top: 8px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  align-self: center;
+  width: 198px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
+}

@@ -14,7 +14,7 @@ function Proposal({ purpose, sum, percent, payment, profit }) {
       <h2 className={styles.title}>Наше предложение</h2>
       <div className={styles.inner}>
         <div>
-          <div className={styles.subtitle}>{sum} рублей</div>
+          <div className={styles.subtitle}>{sum}</div>
           <div>Сумма {SumName[purpose]}</div>
         </div>
         <div>
@@ -22,11 +22,11 @@ function Proposal({ purpose, sum, percent, payment, profit }) {
           <div>Процентная ставка</div>
         </div>
         <div>
-          <div className={styles.subtitle}>{payment} рублей</div>
+          <div className={styles.subtitle}>{payment}</div>
           <div>Ежемесячный платеж</div>
         </div>
         <div>
-          <div className={styles.subtitle}>{profit} рублей</div>
+          <div className={styles.subtitle}>{profit}</div>
           <div>Необходимый доход</div>
         </div>
       </div>
@@ -37,10 +37,10 @@ function Proposal({ purpose, sum, percent, payment, profit }) {
 
 Proposal.propTypes = {
   purpose: PropTypes.string.isRequired,
-  sum: PropTypes.number.isRequired,
+  sum: PropTypes.string.isRequired,
   percent: PropTypes.number.isRequired,
-  payment: PropTypes.number.isRequired,
-  profit: PropTypes.number.isRequired,
+  payment: PropTypes.string.isRequired,
+  profit: PropTypes.string.isRequired,
 };
 
 export { Proposal };

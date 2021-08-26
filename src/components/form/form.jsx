@@ -12,7 +12,7 @@ import {
   getNumber,
   getMoneyString,
   divideNumberByPieces,
-  getTime
+  getTime,
 } from '../../utils';
 
 const DEFAULT_VALUE = '';
@@ -119,18 +119,21 @@ function Form() {
 
   const proposal = {
     purpose,
-    sum: getProposalSum(),
+    sum: getMoneyString(getProposalSum()),
     percent: getProposalPercent(),
-    payment: getProposalPayment(),
-    profit: getProposalProfit(),
+    payment: getMoneyString(getProposalPayment()),
+    profit: getMoneyString(getProposalProfit()),
   };
 
   const onPriceChange = (evt) => {
     const value = getNumber(evt.target.value);
-    setPrice(value);
-    setPayment(
-      getMoneyString(Math.round((value / MAX_PERCENT) * +paymentRange)),
-    );
+
+    if (value <= LoanPurpose[purpose].MAX_PRICE) {
+      setPrice(value);
+      setPayment(
+        getMoneyString(Math.round((value / MAX_PERCENT) * +paymentRange)),
+      );
+    }
   };
 
   const onPriceBlur = (evt) => {
