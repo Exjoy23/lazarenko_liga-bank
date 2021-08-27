@@ -1,0 +1,60 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
+  padding-top: 53px;
+  padding-left: 67px;
+  padding-right: 67px;
+  padding-bottom: 55px;
+  background-color: #f6f7ff;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.text {
+  margin: 0;
+  color: #394959;
+  line-height: 22px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../assets/img/close.svg');
+  background-size: 20px 20px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}

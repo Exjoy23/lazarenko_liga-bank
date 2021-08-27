@@ -1,0 +1,23 @@
+.wrapper {
+  height: 225px;
+  padding: 60px;
+  background-color: #f6f7ff;
+
+  @media screen and (max-width: 767px) {
+    height: 100%;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  line-height: 30px;
+}
+
+.text {
+  margin: 0;
+  color: #394959;
+  line-height: 22px;
+}

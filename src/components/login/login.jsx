@@ -13,7 +13,7 @@ const ModalFields = {
 
 function Login({ isOpen, onActive }) {
   const [login, setLogin] = useLocalStorage(ModalFields.LOGIN, '');
-  const [password, setPassword] = useLocalStorage(ModalFields.LOGIN, '');
+  const [password, setPassword] = useLocalStorage(ModalFields.PASSWORD, '');
   const [isVisible, setIsVisible] = useState(false);
 
   const loginRef = useRef(null);
@@ -27,7 +27,7 @@ function Login({ isOpen, onActive }) {
       onRequestClose={() => onActive(false)}
       onAfterOpen={() => loginRef.current.focus()}
       style={{
-        overlay: { backgroundColor: 'rgba(88, 87, 87, 0.6)', zIndex: '10' },
+        overlay: { backgroundColor: 'rgba(88, 87, 87, 0.6)', zIndex: '10000' },
       }}
       ariaHideApp={false}
     >

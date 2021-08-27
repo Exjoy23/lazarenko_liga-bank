@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './form.module.scss';
 import { Proposal } from '../proposal/proposal';
 import { Select } from '../select/select';
 import { Checkbox } from '../checkbox/checkbox';
 import { Range } from '../range/range';
+import { Message } from '../message/message';
 import {
   TIME_TITLES,
   PurposeNames,
@@ -43,8 +45,12 @@ const LoanPurpose = {
     MIN_PERCENT: 20,
   },
 };
+const MinCreditPrice = {
+  MORTGAGE: 500000,
+  CAR: 200000,
+};
 
-function Form() {
+function Form({ onDataSet }) {
   const [purpose, setPurpose] = useState(PurposeNames.DEFAULT);
   const [price, setPrice] = useState(DEFAULT_VALUE);
   const [payment, setPayment] = useState(DEFAULT_VALUE);
@@ -75,6 +81,10 @@ function Form() {
     }
   }, [purpose]);
 
+  useEffect(() => {
+    onDataSet((state) => ({ ...state, purpose: '' }));
+  }, [onDataSet, purpose]);
+
   const getProposalPercent = () => {
     if (purpose === PurposeNames.MORTGAGE) {
       if (paymentRange >= 15) {
@@ -103,8 +113,11 @@ function Form() {
     }
   };
 
-  const getProposalSum = () =>
-    getNumber(price) - getNumber(payment) - (capital ? MATERNITY_CAPITAL : 0);
+  const getProposalSum = () => {
+    const maternityCapital =
+      purpose === PurposeNames.MORTGAGE && capital ? MATERNITY_CAPITAL : 0;
+    return getNumber(price) - getNumber(payment) - maternityCapital;
+  };
 
   const getProposalPayment = () => {
     const rate = getProposalPercent() / MAX_PERCENT / MONTHS_IN_YEAR;
@@ -123,6 +136,16 @@ function Form() {
     percent: getProposalPercent(),
     payment: getMoneyString(getProposalPayment()),
     profit: getMoneyString(getProposalProfit()),
+  };
+
+  const onFormSubmit = (evt) => {
+    evt.preventDefault();
+    onDataSet({
+      purpose,
+      price,
+      payment,
+      time,
+    });
   };
 
   const onPriceChange = (evt) => {
@@ -274,7 +297,7 @@ function Form() {
   };
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={onFormSubmit}>
       <div className={styles.wrapper}>
         <div className={classNames(styles.inner, styles.purpose)}>
           <h3 className={styles.title}>Шаг 1. Цель кредита</h3>
@@ -371,9 +394,17 @@ function Form() {
           </div>
         )}
       </div>
-      {purpose !== PurposeNames.DEFAULT && <Proposal {...proposal} />}
+      {(purpose !== PurposeNames.DEFAULT &&
+        getProposalSum() < MinCreditPrice[purpose] && (
+          <Message purpose={purpose} />
+        )) ||
+        (purpose !== PurposeNames.DEFAULT && <Proposal {...proposal} />)}
     </form>
   );
 }
+
+Form.propTypes = {
+  onDataSet: PropTypes.func.isRequired,
+};
 
 export { Form };
