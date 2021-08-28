@@ -8,7 +8,7 @@ const SumName = {
   CAR: 'автокредита',
 };
 
-function Proposal({ purpose, sum, percent, payment, profit }) {
+function Proposal({ purpose, sum, percent, payment, profit, disabled }) {
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title}>Наше предложение</h2>
@@ -30,7 +30,9 @@ function Proposal({ purpose, sum, percent, payment, profit }) {
           <div>Необходимый доход</div>
         </div>
       </div>
-      <Button style={{ fontSize: 16, padding: 16 }}>Оформить заявку</Button>
+      <Button style={{ fontSize: 16, padding: 16 }} disabled={disabled}>
+        Оформить заявку
+      </Button>
     </div>
   );
 }
@@ -41,6 +43,7 @@ Proposal.propTypes = {
   percent: PropTypes.number.isRequired,
   payment: PropTypes.string.isRequired,
   profit: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export { Proposal };

@@ -1,3 +1,4 @@
+const MIN_PHONE_NUMBER_COUNT = 11;
 export const TIME_TITLES = ['год', 'года', 'лет'];
 export const CURRENCY_TITLES = ['рубль', 'рубля', 'рублей'];
 export const PurposeNames = {
@@ -24,3 +25,6 @@ export const getMoneyString = (value) =>
   `${divideNumberByPieces(value)} ${declOfNum(value, CURRENCY_TITLES)}`;
 
 export const getTime = (value) => `${value} ${declOfNum(value, TIME_TITLES)}`;
+
+export const validatePhoneNumber = (number) =>
+  getNumber(number).toString().length === MIN_PHONE_NUMBER_COUNT;

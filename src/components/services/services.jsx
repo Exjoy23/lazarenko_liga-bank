@@ -12,7 +12,7 @@ function Services() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="services">
       <div className={styles.inner}>
         <Swiper
           className="thumb"
@@ -68,7 +68,7 @@ function Services() {
                 или вывод процентов на банковскую карту
               </li>
             </ul>
-            <Button style={{ padding: '14px 85px' }}>Узнать подробнее</Button>
+            <Button fullwidth>Узнать подробнее</Button>
           </SwiperSlide>
           <SwiperSlide className={classNames(styles.slide, styles.slide_cards)}>
             <h2 className={styles.title}>
@@ -100,7 +100,7 @@ function Services() {
               <li className={styles.item}>Страхование жизни и здоровья</li>
               <li className={styles.item}>Страхование недвижимости</li>
             </ul>
-            <Button style={{ padding: '14px 85px' }}>Узнать подробнее</Button>
+            <Button fullwidth>Узнать подробнее</Button>
           </SwiperSlide>
           <SwiperSlide className={classNames(styles.slide, styles.slide_phone)}>
             <h2 className={styles.title}>
@@ -116,7 +116,7 @@ function Services() {
                 всему миру
               </li>
             </ul>
-            <Button style={{ padding: '14px 85px' }}>Узнать подробнее</Button>
+            <Button fullwidth>Узнать подробнее</Button>
           </SwiperSlide>
         </Swiper>
       </div>

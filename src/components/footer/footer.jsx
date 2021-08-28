@@ -9,7 +9,7 @@ import youtube from '../../assets/img/youtube.svg';
 
 function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="contacts">
       <div className={styles.wrapper}>
         <div className={styles.address}>
           <img
@@ -26,13 +26,13 @@ function Footer() {
         </div>
         <ul className={classNames(styles.list, styles.nav)}>
           <li className={styles.item}>
-            <a href="/">Услуги</a>
+            <a href="#services">Услуги</a>
           </li>
           <li className={styles.item}>
-            <a href="/">Рассчитать кредит</a>
+            <a href="#calculator">Рассчитать кредит</a>
           </li>
           <li className={styles.item}>
-            <a href="/">Контакты</a>
+            <a href="#contacts">Контакты</a>
           </li>
           <li className={styles.item}>
             <a href="/">Задать вопрос</a>

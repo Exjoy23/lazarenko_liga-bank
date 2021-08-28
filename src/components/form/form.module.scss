@@ -72,6 +72,10 @@
     font-size: 16px;
     margin-bottom: 7px;
   }
+
+  &_error {
+    border: 1px solid #eb3737;
+  }
 }
 
 .price {
@@ -146,4 +150,11 @@
     background-image: url('../../assets/img/plus.svg');
     right: 17px;
   }
+}
+
+.error {
+  position: absolute;
+  color: #eb3737;
+  right: 0;
+  top: -5px;
 }

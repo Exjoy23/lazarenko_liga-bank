@@ -44,12 +44,12 @@ function Header() {
             )}
           >
             <li className={styles.item}>
-              <a className={styles.link} href="/">
+              <a className={styles.link} href="#services">
                 Услуги
               </a>
             </li>
             <li className={styles.item}>
-              <a className={styles.link} href="/">
+              <a className={styles.link} href="#calculator">
                 Рассчитать кредит
               </a>
             </li>
@@ -59,7 +59,7 @@ function Header() {
               </a>
             </li>
             <li className={styles.item}>
-              <a className={styles.link} href="/">
+              <a className={styles.link} href="#contacts">
                 Контакты
               </a>
             </li>

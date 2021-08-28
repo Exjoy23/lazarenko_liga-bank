@@ -61,7 +61,7 @@ function Map() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="map">
       <div className={styles.inner}>
         <h2 className={styles.title}>Отделения Лига Банка</h2>
         <div className={styles.map} ref={mapRef} />

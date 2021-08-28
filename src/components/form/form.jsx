@@ -23,6 +23,8 @@ const MAX_PERCENT = 100;
 const MONTHS_IN_YEAR = 12;
 const MATERNITY_CAPITAL = 470000;
 const CAR_PRICE = 2000000;
+const PAYMENT_PERCENT = 15;
+const MIN_PROFIT = 45;
 const LoanPurpose = {
   MORTGAGE: {
     NAME: 'недвижимости',
@@ -49,6 +51,22 @@ const MinCreditPrice = {
   MORTGAGE: 500000,
   CAR: 200000,
 };
+const CreditPercents = {
+  MORTGAGE: {
+    MIN: 8.5,
+    MAX: 9.4,
+  },
+  CAR: {
+    INSURANCE: {
+      MIN: 3.5,
+      MAX: 8.5,
+    },
+    PRICE: {
+      MIN: 15,
+      MAX: 16,
+    },
+  },
+};
 
 function Form({ onDataSet }) {
   const [purpose, setPurpose] = useState(PurposeNames.DEFAULT);
@@ -60,6 +78,7 @@ function Form({ onDataSet }) {
   const [capital, setCapital] = useState(false);
   const [casco, setCasco] = useState(false);
   const [insurance, setInsurance] = useState(false);
+  const [priceError, setPriceError] = useState(false);
 
   useEffect(() => {
     if (purpose !== PurposeNames.DEFAULT) {
@@ -85,30 +104,42 @@ function Form({ onDataSet }) {
     onDataSet((state) => ({ ...state, purpose: '' }));
   }, [onDataSet, purpose]);
 
+  useEffect(() => {
+    if (
+      purpose !== PurposeNames.DEFAULT &&
+      (getNumber(price) < LoanPurpose[purpose].MIN_PRICE ||
+        getNumber(price) > LoanPurpose[purpose].MAX_PRICE)
+    ) {
+      setPriceError(true);
+    } else {
+      setPriceError(false);
+    }
+  }, [purpose, price]);
+
   const getProposalPercent = () => {
     if (purpose === PurposeNames.MORTGAGE) {
-      if (paymentRange >= 15) {
-        return 8.5;
+      if (paymentRange >= PAYMENT_PERCENT) {
+        return CreditPercents[purpose].MIN;
       }
 
-      return 9.4;
+      return CreditPercents[purpose].MAX;
     }
 
     if (purpose === PurposeNames.CAR) {
       if (casco && insurance) {
-        return 3.5;
+        return CreditPercents[purpose].INSURANCE.MIN;
       }
 
       if (casco || insurance) {
-        return 8.5;
+        return CreditPercents[purpose].INSURANCE.MAX;
       }
 
       if (getNumber(price) < CAR_PRICE) {
-        return 16;
+        return CreditPercents[purpose].PRICE.MAX;
       }
 
       if (getNumber(price) >= CAR_PRICE) {
-        return 15;
+        return CreditPercents[purpose].PRICE.MIN;
       }
     }
   };
@@ -128,7 +159,7 @@ function Form({ onDataSet }) {
   };
 
   const getProposalProfit = () =>
-    Math.round((getProposalPayment() / 45) * MAX_PERCENT);
+    Math.round((getProposalPayment() / MIN_PROFIT) * MAX_PERCENT);
 
   const proposal = {
     purpose,
@@ -312,8 +343,14 @@ function Form({ onDataSet }) {
               <span className={styles.caption}>
                 Стоимость {LoanPurpose[purpose].NAME}
               </span>
+              {priceError && (
+                <span className={styles.error}>Некорректное значение</span>
+              )}
               <input
-                className={styles.input}
+                className={classNames(
+                  styles.input,
+                  priceError && styles.input_error,
+                )}
                 value={price}
                 onChange={onPriceChange}
                 onBlur={onPriceBlur}
@@ -398,7 +435,9 @@ function Form({ onDataSet }) {
         getProposalSum() < MinCreditPrice[purpose] && (
           <Message purpose={purpose} />
         )) ||
-        (purpose !== PurposeNames.DEFAULT && <Proposal {...proposal} />)}
+        (purpose !== PurposeNames.DEFAULT && (
+          <Proposal disabled={priceError} {...proposal} />
+        ))}
     </form>
   );
 }

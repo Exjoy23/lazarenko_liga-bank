@@ -16,7 +16,7 @@ function Slider() {
     <Swiper
       slidesPerView={1}
       pagination
-      // autoplay={{ delay: 4000, disableOnInteraction: false }}
+      autoplay={{ delay: 4000, disableOnInteraction: false }}
       loop
       a11y
       keyboard={{ enabled: true }}
@@ -26,7 +26,7 @@ function Slider() {
         <div className={classNames(styles.inner, styles.inner_first)}>
           <h2 className={styles.title}>Лига Банк</h2>
           <p className={styles.text}>Кредиты на любой случай</p>
-          <Button className={styles.button} secondary>
+          <Button className={styles.button} secondary href="#calculator">
             Рассчитать кредит
           </Button>
         </div>
@@ -41,7 +41,7 @@ function Slider() {
         <div className={styles.inner}>
           <h2 className={styles.title}>Лига Банк</h2>
           <p className={styles.text}>Всегда рядом</p>
-          <Button>Найти отделение</Button>
+          <Button href="#map">Найти отделение</Button>
         </div>
       </SwiperSlide>
     </Swiper>

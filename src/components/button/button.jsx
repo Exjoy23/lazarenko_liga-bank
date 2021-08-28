@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import styles from './button.module.scss';
 import classNames from 'classnames';
 
-function Button({ children, className, secondary, style, ...attrs }) {
+function Button({
+  children,
+  className,
+  secondary,
+  fullwidth,
+  style,
+  ...attrs
+}) {
   const Tag = attrs.href ? 'a' : 'button';
 
   return (
@@ -12,8 +19,10 @@ function Button({ children, className, secondary, style, ...attrs }) {
         className,
         styles.button,
         secondary && styles.button_secondary,
+        fullwidth && styles.button_fullwidth,
       )}
       style={style}
+      {...attrs}
     >
       {children}
     </Tag>
@@ -24,6 +33,7 @@ Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   secondary: PropTypes.bool,
+  fullwidth: PropTypes.bool,
   style: PropTypes.object,
 };
 

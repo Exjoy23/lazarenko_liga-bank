@@ -12,7 +12,7 @@ function Calculator() {
   });
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="calculator">
       <div className={styles.inner}>
         <h2 className={styles.title}>Кредитный калькулятор</h2>
         <Form onDataSet={setData} />

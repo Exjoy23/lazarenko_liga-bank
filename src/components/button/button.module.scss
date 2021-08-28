@@ -8,8 +8,9 @@
   text-align: center;
   font-size: 18px;
   font-weight: 500;
+  display: inline-block;
 
-  &:hover {
+  &:hover:not(:disabled) {
     cursor: pointer;
     opacity: 0.7;
   }
@@ -17,6 +18,11 @@
   &_secondary {
     background-color: #f6f7ff;
     color: #1f1e25;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
   }
 
   @media screen and (max-width: 1023px) {
@@ -29,6 +35,10 @@
 
     &_mobile {
       padding: 16px 82px;
+    }
+
+    &_fullwidth {
+      width: 100%;
     }
   }
 }

@@ -12,11 +12,15 @@ function MainPage() {
     <div className={styles.wrapper}>
       <Header />
       <main>
+        <h1 className="visually-hidden">Главная страница Лига банка.</h1>
+        <h2 className="visually-hidden">Промо</h2>
         <Slider />
+        <h2 className="visually-hidden">Услуги</h2>
         <Services />
         <Calculator />
         <Map />
       </main>
+      <h2 className="visually-hidden">Контакты</h2>
       <Footer />
     </div>
   );

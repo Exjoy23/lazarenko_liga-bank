@@ -6,7 +6,9 @@ import styles from './bid.module.scss';
 import { Button } from '../button/button';
 import { Popup } from '../popup/popup';
 import useLocalStorage from '../../hooks/use-local-storage';
+import { validatePhoneNumber } from '../../utils';
 
+const TIMEOUT = 700;
 const PurposeName = {
   MORTGAGE: 'Ипотека',
   CAR: 'Автокредит',
@@ -23,11 +25,14 @@ const FieldName = {
 
 let count = 1;
 
-function Bid({ purpose, price, payment, time }) {
+function Bid({ purpose, price, payment, time, onDataSet }) {
   const [name, setName] = useLocalStorage(FieldName.name, '');
   const [phone, setPhone] = useLocalStorage(FieldName.phone, '');
   const [email, setEmail] = useLocalStorage(FieldName.email, '');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   const nameRef = useRef(null);
 
@@ -35,11 +40,45 @@ function Bid({ purpose, price, payment, time }) {
     nameRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (nameError) {
+        setNameError(false);
+      }
+
+      if (phoneError) {
+        setPhoneError(false);
+      }
+
+      if (emailError) {
+        setEmailError(false);
+      }
+    }, TIMEOUT);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [nameError, phoneError, emailError]);
+
   const onFormSubmit = (evt) => {
     evt.preventDefault();
 
-    setIsPopupOpen(true);
-    count++;
+    if (!name) {
+      setNameError(true);
+    }
+
+    if (!validatePhoneNumber(phone)) {
+      setPhoneError(true);
+    }
+
+    if (!email) {
+      setEmailError(true);
+    }
+
+    if (name && validatePhoneNumber(phone) && email) {
+      setIsPopupOpen(true);
+      count++;
+    }
   };
 
   return (
@@ -61,7 +100,10 @@ function Bid({ purpose, price, payment, time }) {
         <form className={styles.form} onSubmit={onFormSubmit}>
           <label className={classNames(styles.label, styles.name)}>
             <input
-              className={styles.input}
+              className={classNames(
+                styles.input,
+                nameError && styles.input_error,
+              )}
               value={name}
               onChange={(evt) => setName(evt.target.value)}
               type="text"
@@ -71,7 +113,10 @@ function Bid({ purpose, price, payment, time }) {
           </label>
           <label className={styles.label}>
             <InputMask
-              className={styles.input}
+              className={classNames(
+                styles.input,
+                phoneError && styles.input_error,
+              )}
               value={phone}
               onChange={(evt) => setPhone(evt.target.value)}
               placeholder="Телефон"
@@ -80,7 +125,10 @@ function Bid({ purpose, price, payment, time }) {
           </label>
           <label className={styles.label}>
             <input
-              className={styles.input}
+              className={classNames(
+                styles.input,
+                emailError && styles.input_error,
+              )}
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
               type="email"
@@ -93,7 +141,13 @@ function Bid({ purpose, price, payment, time }) {
             </Button>
           </div>
         </form>
-        <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+        <Popup
+          isOpen={isPopupOpen}
+          onClose={() => {
+            setIsPopupOpen(false);
+            onDataSet((state) => ({ ...state, purpose: '' }));
+          }}
+        />
       </div>
     </div>
   );
@@ -104,6 +158,7 @@ Bid.propTypes = {
   price: PropTypes.string.isRequired,
   payment: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+  onDataSet: PropTypes.func.isRequired,
 };
 
 export { Bid };
