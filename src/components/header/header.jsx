@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 import logo from '../../assets/img/logo.svg';
 import { Login } from '../login/login';
@@ -31,7 +32,7 @@ function Header() {
             />
           </div>
           <div className={styles.logo}>
-            <img src={logo} alt="Логотип Лига банка" />
+            <img width="147" height="25" src={logo} alt="Логотип Лига банка" />
           </div>
         </div>
         <nav
@@ -54,9 +55,9 @@ function Header() {
               </a>
             </li>
             <li className={styles.item}>
-              <a className={styles.link} href="/">
+              <Link className={styles.link} to="/">
                 Конвертер валют
-              </a>
+              </Link>
             </li>
             <li className={styles.item}>
               <a className={styles.link} href="#contacts">

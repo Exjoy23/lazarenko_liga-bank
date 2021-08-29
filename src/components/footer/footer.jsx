@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import styles from './footer.module.scss';
 import logo from '../../assets/img/logo.svg';
 import facebook from '../../assets/img/facebook.svg';
@@ -26,16 +27,24 @@ function Footer() {
         </div>
         <ul className={classNames(styles.list, styles.nav)}>
           <li className={styles.item}>
-            <a href="#services">Услуги</a>
+            <a className={styles.link} href="#services">
+              Услуги
+            </a>
           </li>
           <li className={styles.item}>
-            <a href="#calculator">Рассчитать кредит</a>
+            <a className={styles.link} href="#calculator">
+              Рассчитать кредит
+            </a>
           </li>
           <li className={styles.item}>
-            <a href="#contacts">Контакты</a>
+            <a className={styles.link} href="#contacts">
+              Контакты
+            </a>
           </li>
           <li className={styles.item}>
-            <a href="/">Задать вопрос</a>
+            <Link className={styles.link} to="/">
+              Задать вопрос
+            </Link>
           </li>
         </ul>
         <div className={styles.mobile}>
@@ -52,22 +61,22 @@ function Footer() {
         </div>
         <ul className={classNames(styles.list, styles.socials)}>
           <li className={styles.social}>
-            <a href="/">
+            <a className={styles.link} href="https://facebook.com/">
               <img width="10" height="16" src={facebook} alt="facebook" />
             </a>
           </li>
           <li className={styles.social}>
-            <a href="/">
+            <a className={styles.link} href="https://www.instagram.com/">
               <img width="16" height="16" src={instagram} alt="instagram" />
             </a>
           </li>
           <li className={styles.social}>
-            <a href="/">
+            <a className={styles.link} href="https://twitter.com/">
               <img width="16" height="13" src={twitter} alt="twitter" />
             </a>
           </li>
           <li className={styles.social}>
-            <a href="/">
+            <a className={styles.link} href="https://www.youtube.com/">
               <img width="16" height="13" src={youtube} alt="youtube" />
             </a>
           </li>

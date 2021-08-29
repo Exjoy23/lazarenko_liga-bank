@@ -109,6 +109,7 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
               type="text"
               placeholder="ФИО"
               ref={nameRef}
+              aria-label="ФИО"
             />
           </label>
           <label className={styles.label}>
@@ -121,6 +122,7 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
               onChange={(evt) => setPhone(evt.target.value)}
               placeholder="Телефон"
               mask="+7 (999) 999-99-99"
+              aria-label="Телефон"
             />
           </label>
           <label className={styles.label}>
@@ -133,6 +135,7 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
               onChange={(evt) => setEmail(evt.target.value)}
               type="email"
               placeholder="E-mail"
+              aria-label="Email"
             />
           </label>
           <div className={styles.button}>
