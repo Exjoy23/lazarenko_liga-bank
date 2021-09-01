@@ -11,6 +11,8 @@ const CITIES = [
   { lat: 57.1522, lng: 65.5272 },
   { lat: 54.9924, lng: 73.3686 },
 ];
+const DEFAULT_COORDS = [55.7522, 52];
+const DEFAULT_ZOOM = 5;
 
 const MapConfig = {
   TILE_LAYER:
@@ -29,7 +31,9 @@ function Map() {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    const map = leaflet.map(mapRef.current).setView([55.7522, 52], 5);
+    const map = leaflet
+      .map(mapRef.current)
+      .setView(DEFAULT_COORDS, DEFAULT_ZOOM);
 
     leaflet
       .tileLayer(MapConfig.TILE_LAYER, {
@@ -61,12 +65,12 @@ function Map() {
   }, []);
 
   return (
-    <div className={styles.wrapper} id="map">
+    <section className={styles.wrapper} id="map">
       <div className={styles.inner}>
         <h2 className={styles.title}>Отделения Лига Банка</h2>
         <div className={styles.map} ref={mapRef} />
       </div>
-    </div>
+    </section>
   );
 }
 

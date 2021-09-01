@@ -12,13 +12,13 @@ function Calculator() {
   });
 
   return (
-    <div className={styles.wrapper} id="calculator">
+    <section className={styles.wrapper} id="calculator">
       <div className={styles.inner}>
         <h2 className={styles.title}>Кредитный калькулятор</h2>
         <Form onDataSet={setData} />
         {data.purpose && <Bid onDataSet={setData} {...data} />}
       </div>
-    </div>
+    </section>
   );
 }
 

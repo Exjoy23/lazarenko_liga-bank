@@ -11,6 +11,7 @@ import youtube from '../../assets/img/youtube.svg';
 function Footer() {
   return (
     <footer className={styles.footer} id="contacts">
+      <h2 className="visually-hidden">Контакты</h2>
       <div className={styles.wrapper}>
         <div className={styles.address}>
           <img
