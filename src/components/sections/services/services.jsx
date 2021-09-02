@@ -4,7 +4,7 @@ import SwiperCore, { Thumbs, Pagination, A11y } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import styles from './services.module.scss';
-import { Button } from '../button/button';
+import { Button } from '../../button/button';
 
 SwiperCore.use([Thumbs, Pagination, A11y]);
 

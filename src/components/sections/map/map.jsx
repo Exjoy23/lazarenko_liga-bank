@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
 import styles from './map.module.scss';
 import 'leaflet/dist/leaflet.css';
-import icon from '../../assets/img/location.svg';
+import icon from '../../../assets/img/location.svg';
 
 const CITIES = [
   { lat: 55.7522, lng: 37.6156 },
@@ -11,20 +11,20 @@ const CITIES = [
   { lat: 57.1522, lng: 65.5272 },
   { lat: 54.9924, lng: 73.3686 },
 ];
-const DEFAULT_COORDS = [55.7522, 52];
+const DEFAULT_COORD_LAT = 55.7522;
+const DEFAULT_COORD_LNG = 52;
 const DEFAULT_ZOOM = 5;
-
-const MapConfig = {
-  TILE_LAYER:
-    'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-  ATTRIBUTION:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-};
+const TILE_LAYER_URL =
+  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+const MAP_ATTRIBUTION =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+const ICON_SIZE_X = 35;
+const ICON_SIZE_Y = 40;
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: icon,
-  iconSize: [35, 40],
-  iconAnchor: [17.5, 40],
+  iconSize: [ICON_SIZE_X, ICON_SIZE_Y],
+  iconAnchor: [ICON_SIZE_X / 2, ICON_SIZE_Y],
 });
 
 function Map() {
@@ -33,11 +33,11 @@ function Map() {
   useEffect(() => {
     const map = leaflet
       .map(mapRef.current)
-      .setView(DEFAULT_COORDS, DEFAULT_ZOOM);
+      .setView([DEFAULT_COORD_LAT, DEFAULT_COORD_LNG], DEFAULT_ZOOM);
 
     leaflet
-      .tileLayer(MapConfig.TILE_LAYER, {
-        attribution: MapConfig.ATTRIBUTION,
+      .tileLayer(TILE_LAYER_URL, {
+        attribution: MAP_ATTRIBUTION,
       })
       .addTo(map);
 

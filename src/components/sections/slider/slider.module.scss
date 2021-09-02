@@ -15,38 +15,38 @@
   }
 
   &_first {
-    background-image: url('../../assets/img/slide1-desktop.jpg');
+    background-image: url('../../../assets/img/slide1-desktop.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/slide1-tablet.jpg');
+      background-image: url('../../../assets/img/slide1-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/slide1-phone.jpg');
+      background-image: url('../../../assets/img/slide1-phone.jpg');
     }
   }
 
   &_second {
-    background-image: url('../../assets/img/slide2-desktop.jpg');
+    background-image: url('../../../assets/img/slide2-desktop.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/slide2-tablet.jpg');
+      background-image: url('../../../assets/img/slide2-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/slide2-phone.jpg');
+      background-image: url('../../../assets/img/slide2-phone.jpg');
     }
   }
 
   &_third {
-    background-image: url('../../assets/img/slide3-desktop.jpg');
+    background-image: url('../../../assets/img/slide3-desktop.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/slide3-tablet.jpg');
+      background-image: url('../../../assets/img/slide3-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/slide3-phone.jpg');
+      background-image: url('../../../assets/img/slide3-phone.jpg');
     }
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Calculator } from '../../calculator/calculator';
+import { Calculator } from '../../sections/calculator/calculator';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
-import { Map } from '../../map/map';
-import { Services } from '../../services/services';
-import { Slider } from '../../slider/slider';
+import { Map } from '../../sections/map/map';
+import { Services } from '../../sections/services/services';
+import { Slider } from '../../sections/slider/slider';
 import styles from './main-page.module.scss';
 
 function MainPage() {

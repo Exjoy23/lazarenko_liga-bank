@@ -46,50 +46,50 @@
   }
 
   &_vault {
-    background-image: url('../../assets/img/piggybank.jpg');
+    background-image: url('../../../assets/img/piggybank.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/piggybank-tablet.jpg');
+      background-image: url('../../../assets/img/piggybank-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/piggybank-phone.jpg');
+      background-image: url('../../../assets/img/piggybank-phone.jpg');
     }
   }
 
   &_cards {
-    background-image: url('../../assets/img/car.jpg');
+    background-image: url('../../../assets/img/car.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/car-tablet.jpg');
+      background-image: url('../../../assets/img/car-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/car-phone.jpg');
+      background-image: url('../../../assets/img/car-phone.jpg');
     }
   }
 
   &_security {
-    background-image: url('../../assets/img/lock.jpg');
+    background-image: url('../../../assets/img/lock.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/lock-tablet.jpg');
+      background-image: url('../../../assets/img/lock-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/lock-phone.jpg');
+      background-image: url('../../../assets/img/lock-phone.jpg');
     }
   }
 
   &_phone {
-    background-image: url('../../assets/img/phone.jpg');
+    background-image: url('../../../assets/img/phone.jpg');
 
     @media screen and (max-width: 1023px) {
-      background-image: url('../../assets/img/phone-tablet.jpg');
+      background-image: url('../../../assets/img/phone-tablet.jpg');
     }
 
     @media screen and (max-width: 767px) {
-      background-image: url('../../assets/img/phone-phone.jpg');
+      background-image: url('../../../assets/img/phone-phone.jpg');
     }
   }
 }
@@ -154,7 +154,7 @@
     width: 13px;
     height: 12px;
     background-repeat: no-repeat;
-    background-image: url('../../assets/img/arrow.svg');
+    background-image: url('../../../assets/img/arrow.svg');
 
     @media screen and (max-width: 767px) {
       width: 9px;
@@ -233,24 +233,24 @@
   &_vault::before {
     width: 34px;
     height: 33px;
-    background-image: url('../../assets/img/vault.svg');
+    background-image: url('../../../assets/img/vault.svg');
   }
 
   &_cards::before {
     width: 34px;
     height: 30px;
-    background-image: url('../../assets/img/cards.svg');
+    background-image: url('../../../assets/img/cards.svg');
   }
 
   &_security::before {
     width: 28px;
     height: 34px;
-    background-image: url('../../assets/img/security.svg');
+    background-image: url('../../../assets/img/security.svg');
   }
 
   &_phone::before {
     width: 20px;
     height: 34px;
-    background-image: url('../../assets/img/phone.svg');
+    background-image: url('../../../assets/img/phone.svg');
   }
 }

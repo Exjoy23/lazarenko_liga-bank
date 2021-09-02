@@ -7,7 +7,7 @@ import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import styles from './slider.module.scss';
 import classNames from 'classnames';
-import { Button } from '../button/button';
+import { Button } from '../../button/button';
 
 SwiperCore.use([Pagination, A11y, Autoplay]);
 
