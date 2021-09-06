@@ -54,7 +54,7 @@
 
   &_close {
     position: absolute;
-    top: -40px;
+    top: 7px;
     right: 7px;
     background-image: url('../../assets/img/close.svg');
   }
@@ -91,10 +91,13 @@
       justify-content: flex-start;
       top: 47px;
       left: 0;
+      padding-bottom: 47px;
       background-color: #f6f7ff;
       padding-left: 15px;
       padding-right: 15px;
+      height: 100%;
       min-height: 100%;
+      overflow-y: auto;
       z-index: 10000;
     }
   }

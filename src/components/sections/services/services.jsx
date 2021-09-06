@@ -137,7 +137,7 @@ function Services() {
                 <br />и ставку по кредиту воспользовавшись
                 <br />
                 нашим{' '}
-                <a className={styles.link} href="/">
+                <a className={styles.link} href="#calculator">
                   кредитным калькулятором
                 </a>
               </p>

@@ -9,6 +9,7 @@ import useLocalStorage from '../../hooks/use-local-storage';
 import { validatePhoneNumber } from '../../utils';
 
 const TIMEOUT = 700;
+const COUNT_LENGTH = 4;
 const PurposeName = {
   MORTGAGE: 'Ипотека',
   CAR: 'Автокредит',
@@ -77,7 +78,6 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
 
     if (name && validatePhoneNumber(phone) && email) {
       setIsPopupOpen(true);
-      count++;
     }
   };
 
@@ -87,7 +87,9 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
         <h2 className={styles.title}>Шаг 3. Оформление заявки</h2>
         <dl className={styles.list}>
           <dt className={styles.term}>Номер заявки</dt>
-          <dd className={styles.definition}>№ {count}</dd>
+          <dd className={styles.definition}>
+            № {count.toString().padStart(COUNT_LENGTH, '0')}
+          </dd>
           <dt className={styles.term}>Цель кредита</dt>
           <dd className={styles.definition}>{PurposeName[purpose]}</dd>
           <dt className={styles.term}>Стоимость {PriceName[purpose]}</dt>
@@ -149,6 +151,7 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
           onClose={() => {
             setIsPopupOpen(false);
             onDataSet((state) => ({ ...state, purpose: '' }));
+            count++;
           }}
         />
       </div>

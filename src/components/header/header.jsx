@@ -10,14 +10,20 @@ function Header() {
   const [isModalActive, setIsModalActive] = useState(false);
 
   useEffect(() => {
-    if (isModalActive) {
+    if (isModalActive || isMenuActive) {
       document.body.style = 'overflow: hidden;';
     }
 
-    if (!isModalActive) {
+    if (!isModalActive && !isMenuActive) {
       document.body.style = 'overflow: visible;';
     }
-  }, [isModalActive]);
+  }, [isModalActive, isMenuActive]);
+
+  const onLinkClick = () => {
+    if (isMenuActive) {
+      setIsMenuActive(false);
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -45,12 +51,16 @@ function Header() {
             )}
           >
             <li className={styles.item}>
-              <a className={styles.link} href="#services">
+              <a onClick={onLinkClick} className={styles.link} href="#services">
                 Услуги
               </a>
             </li>
             <li className={styles.item}>
-              <a className={styles.link} href="#calculator">
+              <a
+                onClick={onLinkClick}
+                className={styles.link}
+                href="#calculator"
+              >
                 Рассчитать кредит
               </a>
             </li>
@@ -60,7 +70,7 @@ function Header() {
               </Link>
             </li>
             <li className={styles.item}>
-              <a className={styles.link} href="#contacts">
+              <a onClick={onLinkClick} className={styles.link} href="#contacts">
                 Контакты
               </a>
             </li>
@@ -79,14 +89,14 @@ function Header() {
           >
             Войти в Интернет-банк
           </a>
-          {isMenuActive && (
-            <button
-              className={classNames(styles.button, styles.button_close)}
-              type="button"
-              onClick={() => setIsMenuActive(false)}
-            />
-          )}
         </nav>
+        {isMenuActive && (
+          <button
+            className={classNames(styles.button, styles.button_close)}
+            type="button"
+            onClick={() => setIsMenuActive(false)}
+          />
+        )}
       </div>
       <Login isOpen={isModalActive} onActive={setIsModalActive} />
     </header>

@@ -8,9 +8,21 @@ const CreditType = {
   MORTGAGE: 'Ипотечное кредитование',
   CAR: 'Автомобильное кредитование',
 };
+const EventCodes = {
+  ENTER: 'Enter',
+  SPACE: 'Space',
+};
 
 function Select({ activeType, onActiveType }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const onInputKeydown = (evt) => {
+    if (evt.code === EventCodes.SPACE || evt.code === EventCodes.ENTER) {
+      evt.preventDefault();
+      onActiveType(evt.target.value);
+      setIsOpen(false);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -22,21 +34,15 @@ function Select({ activeType, onActiveType }) {
         {CreditType[activeType]}
       </button>
       {isOpen && (
-        <ul
-          className={styles.list}
-          onChange={(evt) => {
-            onActiveType(evt.target.value);
-            setIsOpen(false);
-          }}
-        >
+        <ul className={styles.list}>
           <li className={styles.item}>
             <input
               className={classNames('visually-hidden', styles.input)}
+              onKeyDown={onInputKeydown}
               id="mortgage"
               type="radio"
               name="credit"
               value="MORTGAGE"
-              disabled={CreditType[activeType] === CreditType.MORTGAGE}
             />
             <label className={styles.label} htmlFor="mortgage">
               {CreditType.MORTGAGE}
@@ -45,11 +51,11 @@ function Select({ activeType, onActiveType }) {
           <li className={styles.item}>
             <input
               className={classNames('visually-hidden', styles.input)}
+              onKeyDown={onInputKeydown}
               id="car"
               type="radio"
               name="credit"
               value="CAR"
-              disabled={CreditType[activeType] === CreditType.CAR}
             />
             <label className={styles.label} htmlFor="car">
               {CreditType.CAR}
