@@ -28,7 +28,7 @@ function Select({ activeType, onActiveType }) {
       </button>
       {isOpen && (
         <ul className={styles.list} onChange={onListChange}>
-          <li className={styles.item}>
+          <li className={styles.item} tabIndex="0">
             <input
               className={classNames('visually-hidden', styles.input)}
               id="mortgage"
@@ -40,7 +40,7 @@ function Select({ activeType, onActiveType }) {
               {CreditType.MORTGAGE}
             </label>
           </li>
-          <li className={styles.item}>
+          <li className={styles.item} tabIndex="0">
             <input
               className={classNames('visually-hidden', styles.input)}
               id="car"
