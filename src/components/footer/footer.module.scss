@@ -167,10 +167,11 @@
 }
 
 .socials {
-  max-width: 102px;
+  max-width: 103px;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 1023px) {
-    max-width: 117px;
+    max-width: 50%;
     margin-left: -14px;
   }
 
@@ -182,10 +183,12 @@
 .social {
   padding-top: 10px;
 
-  &:not(:last-child) {
+  &:not(:nth-child(4n)) {
     margin-right: 15px;
+  }
 
-    @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 1023px) {
+    &:not(:last-child) {
       margin-right: 20px;
     }
   }

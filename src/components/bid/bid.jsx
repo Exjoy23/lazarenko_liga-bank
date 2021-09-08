@@ -78,6 +78,7 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
 
     if (name && validatePhoneNumber(phone) && email) {
       setIsPopupOpen(true);
+      document.body.style = 'overflow: hidden;';
     }
   };
 
@@ -151,6 +152,7 @@ function Bid({ purpose, price, payment, time, onDataSet }) {
           onClose={() => {
             setIsPopupOpen(false);
             onDataSet((state) => ({ ...state, purpose: '' }));
+            document.body.style = 'overflow: visible;';
             count++;
           }}
         />

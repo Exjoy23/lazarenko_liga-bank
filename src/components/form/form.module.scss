@@ -141,6 +141,11 @@
     opacity: 0.5;
   }
 
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
   &_minus {
     background-image: url('../../assets/img/minus.svg');
     left: 17px;

@@ -14,7 +14,7 @@ import {
   getNumber,
   getMoneyString,
   divideNumberByPieces,
-  getTime
+  getTime,
 } from '../../utils';
 
 const DEFAULT_VALUE = '';
@@ -361,11 +361,19 @@ function Form({ onDataSet }) {
                 className={classNames(styles.button, styles.button_minus)}
                 onClick={(evt) => onPriceButtonClick(evt, true)}
                 type="button"
+                disabled={
+                  getNumber(price) - LoanPurpose[purpose].STEP_PRICE <
+                  LoanPurpose[purpose].MIN_PRICE
+                }
               />
               <button
                 className={classNames(styles.button, styles.button_plus)}
                 onClick={onPriceButtonClick}
                 type="button"
+                disabled={
+                  getNumber(price) + LoanPurpose[purpose].STEP_PRICE >
+                  LoanPurpose[purpose].MAX_PRICE
+                }
               />
               <span className={styles.text}>
                 От {divideNumberByPieces(LoanPurpose[purpose].MIN_PRICE)} до{' '}
@@ -433,8 +441,8 @@ function Form({ onDataSet }) {
       </div>
       {(purpose !== PurposeNames.DEFAULT &&
         getProposalSum() < MinCreditPrice[purpose] && (
-        <Message purpose={purpose} />
-      )) ||
+          <Message purpose={purpose} />
+        )) ||
         (purpose !== PurposeNames.DEFAULT && (
           <Proposal disabled={priceError} {...proposal} />
         ))}
