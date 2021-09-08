@@ -14,7 +14,7 @@ import {
   getNumber,
   getMoneyString,
   divideNumberByPieces,
-  getTime,
+  getTime
 } from '../../utils';
 
 const DEFAULT_VALUE = '';
@@ -441,8 +441,8 @@ function Form({ onDataSet }) {
       </div>
       {(purpose !== PurposeNames.DEFAULT &&
         getProposalSum() < MinCreditPrice[purpose] && (
-          <Message purpose={purpose} />
-        )) ||
+        <Message purpose={purpose} />
+      )) ||
         (purpose !== PurposeNames.DEFAULT && (
           <Proposal disabled={priceError} {...proposal} />
         ))}
