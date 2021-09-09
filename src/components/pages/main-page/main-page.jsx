@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calculator } from '../../sections/calculator/calculator';
+import { Converter } from '../../sections/converter/converter';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { Map } from '../../sections/map/map';
@@ -16,6 +17,7 @@ function MainPage() {
         <Slider />
         <Services />
         <Calculator />
+        <Converter />
         <Map />
       </main>
       <Footer />
