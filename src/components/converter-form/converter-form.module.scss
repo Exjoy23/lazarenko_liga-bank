@@ -1,0 +1,131 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  padding-top: 60px;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1260px;
+  padding-left: 45px;
+  padding-right: 45px;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.title {
+  font-size: 41px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 57px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 22px;
+  }
+}
+
+.text {
+  font-size: 22px;
+  font-weight: 500;
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 85px 120px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background-image: url('../../assets/img/arrows.svg');
+    background-position: center;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-27.5px);
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (max-width: 1023px) {
+    grid-template-columns: 1fr;
+
+    &::after {
+      top: 150px;
+      transform: rotate(90deg) translateY(27.5px);
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    &::after {
+      top: 185px;
+    }
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.date {
+  max-width: 390px;
+  height: 60px;
+  border: 1px solid #1f1e25;
+  border-radius: 4px;
+  outline: none;
+  font-size: 24px;
+  color: #000000;
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+
+  background-image: url('../../assets/img/date.svg');
+  background-repeat: no-repeat;
+  background-position: 95% 5px;
+  padding-top: 6px;
+  padding-right: 65px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.button {
+  width: 390px;
+  justify-self: flex-end;
+
+  @media screen and (max-width: 1023px) {
+    justify-self: flex-start;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
+}
+
+.calendar {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  border: 1px solid #1f1e25;
+  overflow: hidden;
+  width: 390px;
+}

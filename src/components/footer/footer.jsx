@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 import styles from './footer.module.scss';
 import logo from '../../assets/img/logo.svg';
 import facebook from '../../assets/img/facebook.svg';
@@ -38,25 +37,31 @@ function Footer() {
             </a>
           </li>
           <li className={styles.item}>
+            <a className={styles.link} href="#converter">
+              Конвертер валют
+            </a>
+          </li>
+          <li className={styles.item}>
             <a className={styles.link} href="#contacts">
               Контакты
             </a>
           </li>
-          <li className={styles.item}>
-            <Link className={styles.link} to="/">
-              Задать вопрос
-            </Link>
-          </li>
         </ul>
         <div className={styles.mobile}>
-          <p className={classNames(styles.title, styles.title_mobile)}>*0904</p>
+          <p className={classNames(styles.title, styles.title_mobile)}>
+            <a className={styles.link} href="tel:88001112233">
+              *0904
+            </a>
+          </p>
           <p className={styles.text}>
             Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2
           </p>
         </div>
         <div className={styles.phone}>
           <p className={classNames(styles.title, styles.title_phone)}>
-            8 800 111 22 33
+            <a className={styles.link} href="tel:88001112233">
+              8 800 111 22 33
+            </a>
           </p>
           <p className={styles.text}>Бесплатный для всех городов России</p>
         </div>

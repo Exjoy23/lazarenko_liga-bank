@@ -65,6 +65,11 @@
     }
 
     @media screen and (max-width: 767px) {
+      background-position: 100% 50%;
+    }
+
+    @media screen and (max-width: 670px) {
+      background-position: 100% 99px;
       background-image: url('../../../assets/img/car-phone.jpg');
     }
   }

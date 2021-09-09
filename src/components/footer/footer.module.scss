@@ -183,12 +183,10 @@
 .social {
   padding-top: 10px;
 
-  &:not(:nth-child(4n)) {
+  &:not(:last-child) {
     margin-right: 15px;
-  }
 
-  @media screen and (max-width: 1023px) {
-    &:not(:last-child) {
+    @media screen and (max-width: 1023px) {
       margin-right: 20px;
     }
   }

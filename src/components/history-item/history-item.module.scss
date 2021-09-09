@@ -1,0 +1,30 @@
+.item {
+  font-size: 18px;
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: 20px;
+  row-gap: 5px;
+  flex-wrap: wrap;
+}
+
+.date {
+  margin-right: 40px;
+}
+
+.from {
+  margin-right: 15px;
+  display: block;
+  padding-right: 50px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: -3px;
+    background-image: url('../../assets/img/history-arrow.svg');
+    width: 40px;
+    height: 18px;
+  }
+}

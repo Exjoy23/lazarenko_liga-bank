@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 import logo from '../../assets/img/logo.svg';
 import { Login } from '../login/login';
@@ -65,9 +64,9 @@ function Header() {
               </a>
             </li>
             <li className={styles.item}>
-              <Link className={styles.link} to="/">
+              <a className={styles.link} href="#converter">
                 Конвертер валют
-              </Link>
+              </a>
             </li>
             <li className={styles.item}>
               <a onClick={onLinkClick} className={styles.link} href="#contacts">

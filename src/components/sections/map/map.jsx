@@ -5,14 +5,17 @@ import 'leaflet/dist/leaflet.css';
 import icon from '../../../assets/img/location.svg';
 
 const CITIES = [
+  { lat: 59.9386, lng: 30.3141 },
   { lat: 55.7522, lng: 37.6156 },
   { lat: 55.7887, lng: 49.1221 },
   { lat: 51.5406, lng: 46.0086 },
   { lat: 57.1522, lng: 65.5272 },
   { lat: 54.9924, lng: 73.3686 },
+  { lat: 56.8519, lng: 60.6122 },
+  { lat: 53.9, lng: 27.5667 },
 ];
-const DEFAULT_COORD_LAT = 55.7522;
-const DEFAULT_COORD_LNG = 52;
+const DEFAULT_COORD_LAT = 56.7522;
+const DEFAULT_COORD_LNG = 44;
 const DEFAULT_ZOOM = 5;
 const TILE_LAYER_URL =
   'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
